@@ -37,7 +37,6 @@ if uploaded_file is not None:
     st.image(uploaded_file)
 
 Generate_pred = container.button("Predict")
-st.write(str(path.resolve().parents[0]))
 if Generate_pred:
     model = loadModel()
     #image = transform_image(uploaded_file)
