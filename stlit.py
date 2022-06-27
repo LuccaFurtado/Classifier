@@ -14,8 +14,8 @@ st.title('Skin Lesion Classifier')
 path = Path(__file__)
 @st.cache(allow_output_mutation=True)
 def loadModel():
-    
-    model_idc = keras.models.load_model(r'model\mobilenetv3.h5',
+    model_path = str(path.resolve().parents[0]) + '\model\mobilenetv3.h5'
+    model_idc = keras.models.load_model(model_path,
     compile=True,
     custom_objects={'top_2_accuracy': top_2_accuracy,'top_3_accuracy': top_3_accuracy})
     return model_idc
@@ -37,7 +37,7 @@ if uploaded_file is not None:
     st.image(uploaded_file)
 
 Generate_pred = container.button("Predict")
-st.write(str(path))
+st.write(str(path.resolve().parents[0]))
 if Generate_pred:
     model = loadModel()
     #image = transform_image(uploaded_file)
