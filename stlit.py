@@ -12,7 +12,7 @@ st.title('Skin Lesion Classifier')
 
 @st.cache(allow_output_mutation=True)
 def loadIDCModel():
-  model_idc = keras.models.load_model(r'model\mobilenetv3.h5',
+  model_idc = keras.models.load_model(r'\model\mobilenetv3.h5',
    compile=True,
     custom_objects={'top_2_accuracy': top_2_accuracy,'top_3_accuracy': top_3_accuracy})
   return model_idc
@@ -43,3 +43,5 @@ if Generate_pred:
     result = classes_dict[np.argmax(prediction)]
     #container.metric('Predição', delta_color='normal')
     container.metric('Predição', result, delta_color='normal')
+
+    
