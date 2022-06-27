@@ -3,6 +3,7 @@ from tensorflow import keras
 from keras.metrics import categorical_accuracy, top_k_categorical_accuracy
 import numpy as np
 import os
+from pathlib import Path
 def top_3_accuracy(y_true, y_pred):
     return top_k_categorical_accuracy(y_true, y_pred, k=3)
 
@@ -13,10 +14,11 @@ st.title('Skin Lesion Classifier')
 
 @st.cache(allow_output_mutation=True)
 def loadModel():
-  model_idc = keras.models.load_model(rf'{os.path.dirname(__file__)}\model\mobilenetv3.h5',
-   compile=True,
+    path = Path(__file__).parents[1] / 'model\mobilenetv3.h5'
+    model_idc = keras.models.load_model(path,
+    compile=True,
     custom_objects={'top_2_accuracy': top_2_accuracy,'top_3_accuracy': top_3_accuracy})
-  return model_idc
+    return model_idc
 @st.cache(allow_output_mutation=True)
 def transform_image(uploaded_file,img_size=224):
     # transform image to numpy array
