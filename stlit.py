@@ -11,11 +11,11 @@ def top_2_accuracy(y_true, y_pred):
     return top_k_categorical_accuracy(y_true, y_pred, k=2)
 
 st.title('Skin Lesion Classifier')
-
+path = Path(__file__)
 @st.cache(allow_output_mutation=True)
 def loadModel():
-    path = Path(__file__).parents[1] / 'model\mobilenetv3.h5'
-    model_idc = keras.models.load_model(path,
+    
+    model_idc = keras.models.load_model(r'model\mobilenetv3.h5',
     compile=True,
     custom_objects={'top_2_accuracy': top_2_accuracy,'top_3_accuracy': top_3_accuracy})
     return model_idc
@@ -37,7 +37,7 @@ if uploaded_file is not None:
     st.image(uploaded_file)
 
 Generate_pred = container.button("Predict")
-st.write(os.path.dirname(__file__))
+st.write(str(path))
 if Generate_pred:
     model = loadModel()
     #image = transform_image(uploaded_file)
