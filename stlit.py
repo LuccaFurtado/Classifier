@@ -14,7 +14,7 @@ st.title('Skin Lesion Classifier')
 path = Path(__file__)
 @st.cache(allow_output_mutation=True)
 def loadModel():
-    model_path = str(path.resolve().parents[0]) + '\model\mobilenetv3.h5'
+    model_path = str(path.resolve().parents[0]) + '/model/mobilenetv3.h5'
     model_idc = keras.models.load_model(model_path,
     compile=True,
     custom_objects={'top_2_accuracy': top_2_accuracy,'top_3_accuracy': top_3_accuracy})
