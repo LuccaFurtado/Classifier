@@ -41,7 +41,7 @@ if Generate_pred:
     model = loadModel()
     #image = transform_image(uploaded_file)
     prediction = model.predict(transform_image(uploaded_file))
-    classes_dict = {0: 'Akiec', 1: 'Bcc', 2: 'Bkl', 3: 'Df', 4: 'Mel', 5: 'Nv', 6: 'Vasc'}
+    classes_dict = {0: 'Actinic Keratosis/Intraepithelial carcinom', 1: 'Basal Cell Carcinoma', 2: 'Actinic Keratosis', 3: 'Dermatofibroma', 4: 'Melanoma', 5: 'Melanocytic Nevus', 6: 'Vascular lesion'}
     result = classes_dict[np.argmax(prediction)]
     #container.metric('Predição', delta_color='normal')
     container.metric('Predição', result, delta_color='normal')
